@@ -77,13 +77,20 @@
 				<div class="col-xl-4 col-lg-4">
 					<!--Contact Info Single-->
 					<div class="contact-info__single">
+						<div class="feature-one__icon">
+							<span class="fa fa-bullseye"></span>
+						</div>
 						<h4 class="contact-info__title">Our Mission</h4>
 						<p class="contact-info__text"><?php echo $company_data->mission  ?></p>
+						<br><br>
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-4">
 					<!--Contact Info Single-->
 					<div class="contact-info__single contact-info__single-2">
+						<div class="feature-one__icon">
+							<span class="fa fa-camera"></span>
+						</div>
 						<h4 class="contact-info__title">Our Goal</h4>
 						<p class="contact-info__text"><?php echo $company_data->goal  ?></p>
 					</div>
@@ -91,8 +98,12 @@
 				<div class="col-xl-4 col-lg-4">
 					<!--Contact Info Single-->
 					<div class="contact-info__single contact-info__single-3">
+						<div class="feature-one__icon">
+							<span class="fa fa-eye"></span>
+						</div>
 						<h4 class="contact-info__title">Our Vision</h4>
 						<p class="contact-info__text"><?php echo $company_data->vision  ?></p>
+						<br>
 					</div>
 				</div>
 			</div>
@@ -132,10 +143,10 @@
 	<!--Brand One Start-->
 	<section class="brand-one">
 		<div class="container">
-			<div class="section-title text-left">
-				<span class="section-title__tagline">HREP</span>
-				<h2 class="section-title__title">Partners</h2>
-			</div>
+<!--			<div class="section-title text-left">-->
+<!--				<span class="section-title__tagline">HREP</span>-->
+<!--				<h2 class="section-title__title">Partners</h2>-->
+<!--			</div>-->
 			<div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
                     "0": {
                         "spaceBetween": 30,
@@ -165,7 +176,7 @@
 				<div class="swiper-wrapper">
 					<?php foreach ($partners as $partner): ?>
 					<div class="swiper-slide">
-						<img style="object-fit: cover; height: 100px" src="<?php echo base_url() ?>assets/images/brand/<?php echo $partner->picture ?>" alt="">
+						<a href="<?php echo $partner->website ?>"><img style="object-fit: cover; height: 100px" src="<?php echo base_url() ?>assets/images/brand/<?php echo $partner->picture ?>" alt=""></a>
 					</div><!-- /.swiper-slide -->
 					<?php endforeach; ?>
 				</div>

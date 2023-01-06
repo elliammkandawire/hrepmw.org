@@ -102,7 +102,7 @@
                                 <a href="<?php echo base_url() ?>">Home</a>
                             </li>
                             <li class="dropdown">
-                                <a href="#">Who we are</a>
+                                <a href="#">Who We Are</a>
                                 <ul>
                                     <li><a href="<?php echo base_url() ?>about">About <?php echo $company_data->shortname ?></a></li>
                                     <li>
@@ -111,7 +111,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#">What we do</a>
+                                <a href="<?php echo base_url() ?>program">What We Do</a>
                                 <ul>
 									<?php foreach($programs as $program): ?>
                                       <li><a href="<?php echo base_url()."programs/".$program->slug ?>"><?php echo ucwords($program->title)  ?></a></li>
@@ -127,12 +127,12 @@
                                     <li><a href="<?php echo base_url() ?>announcements">Announcements</a></li>
                                     <li><a href="<?php echo base_url() ?>downloads">Documentation</a></li>
                                     <li><a href="<?php echo base_url() ?>news">Blog</a></li>
+                                    <li><a href="<?php echo base_url() ?>gallery">Gallery</a></li>
 <!--                                    <li><a href="--><?php // echo base_url() ?><!--">Publications</a></li>-->
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#">Careers</a>
-                            </li>
+                            <li><a href="<?php echo base_url() ?>vacancies">Careers</a></li>
+                            <li><a href="<?php echo base_url() ?>partners">Partners</a></li>
                             <li><a href="<?php echo base_url() ?>contact">Contact</a></li>
                         </ul>
                     </div>

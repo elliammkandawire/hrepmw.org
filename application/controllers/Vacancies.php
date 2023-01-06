@@ -2,18 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 include_once (dirname(__FILE__) . "/BaseController.php");
 
-class Program extends BaseController {
-	private $table="our_activities";
-
+class Vacancies extends BaseController {
+	private $table="vacancies";
 	public function index()
 	{
 		$data["data"]=$this->readDataWithOrder($this->table,"date","ASC");
-		$data["title"]="programs";
-		$this->addWebsiteHeader("web/programs",$data);
+		$data["title"]=$this->table;
+		$this->addWebsiteHeader("web/vacancies",$data);
 	}
-	public function program_details($slug){
+
+	public function vacancy_details($slug){
 		$data["data"]=$this->readSingle($this->table,"slug",$slug);
-		$data["title"]="program_details";
-		$this->addWebsiteHeader("web/program-details",$data);
+		$data["title"]="vacancies_details";
+		$this->addWebsiteHeader("web/vacancies-details",$data);
 	}
 }

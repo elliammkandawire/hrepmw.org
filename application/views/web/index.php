@@ -95,7 +95,7 @@
 					<div class="welcome-one__left">
 						<div class="welcome-one__img-box wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
 							<div class="welcome-one__img">
-								<img style="object-fit: cover; height: 510px;" src="<?php echo base_url() ?>assets/images/resources/<?php echo $company_data->home_about_picture ?>" alt="">
+								<img style="object-fit: cover; height: 510px;" src="<?php echo $company_data->home_about_picture ?>" alt="">
 							</div>
 <!--							<div class="welcome-one__small-img">-->
 <!--								<img src="assets/images/resources/welcome-one-small-img.jpg" alt="">-->
@@ -150,12 +150,12 @@
 									<!--Two Section Galley Single-->
 									<div class="two-section__gallery-single">
 										<div class="two-section__gallery-img-inner">
-											<img src="<?php echo base_url() ?>assets/images/moh/<?php echo $announcement->picture ?>" alt="">
+											<img src="<?php echo $announcement->picture ?>" alt="">
 										</div>
 										<div class="two-section__gallery-img-overly">
 											<div class="two-section__gallery-icon-bg">
 											</div>
-											<a class="img-popup" href="<?php echo base_url() ?>assets/images/moh/<?php echo $announcement->picture ?>">
+											<a class="img-popup" href="<?php echo $announcement->picture ?>">
 												<span class="icon-right-arrow"></span>
 											</a>
 										</div>
@@ -178,8 +178,8 @@
 	<section class="two-section">
 		<div class="two-section__container">
 			<div class="two-section__testimonial">
-				<div class="testimonial-one-map" style="background-image: url(assets/images/shapes/testimonial-one-map.png);"></div>
-				<div class="testimonial-one-shape" style="background-image: url(assets/images/shapes/testimonial-one-shape.png);"></div>
+				<div class="testimonial-one-map"></div>
+				<div class="testimonial-one-shape"></div>
 				<h3 class="two-section__testimonial-title">Global Health Days</h3>
 
 				<div class="swiper-container" id="testimonials-one__thumb">
@@ -218,66 +218,23 @@
 			<div class="two-section__gallery">
 				<div class="row">
 
-					<div class="col-xl-6 col-lg-3 col-md-6">
+					<?php foreach ($features as $feature): ?>
+					<div class="col-xl-6 col-lg-3 col-md-6" style="padding-bottom: 10px">
 						<!--Two Section Galley Single-->
 						<div class="two-section__gallery-single">
 							<div class="two-section__gallery-img-inner">
-								<img src="assets/images/gallery/two-section-gallery-img-1.jpg" alt="">
+								<img style="object-fit: cover; height: 400px;" src="<?php echo $feature->newspaper_screenshot ?>" alt="">
 							</div>
 							<div class="two-section__gallery-img-overly">
 								<div class="two-section__gallery-icon-bg">
 								</div>
-								<a class="img-popup" href="assets/images/gallery/two-section-gallery-img-1.jpg">
+								<a class="img-popup" href="<?php echo $feature->newspaper_screenshot ?>">
 									<span class="icon-right-arrow"></span>
 								</a>
 							</div>
 						</div>
 					</div>
-					<div class="col-xl-6 col-lg-3 col-md-6">
-						<!--Two Section Galley Single-->
-						<div class="two-section__gallery-single">
-							<div class="two-section__gallery-img-inner">
-								<img src="assets/images/gallery/two-section-gallery-img-2.jpg" alt="">
-							</div>
-							<div class="two-section__gallery-img-overly">
-								<div class="two-section__gallery-icon-bg">
-								</div>
-								<a class="img-popup" href="assets/images/gallery/two-section-gallery-img-2.jpg">
-									<span class="icon-right-arrow"></span>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-6 col-lg-3 col-md-6">
-						<!--Two Section Galley Single-->
-						<div class="two-section__gallery-single">
-							<div class="two-section__gallery-img-inner">
-								<img src="assets/images/gallery/two-section-gallery-img-3.jpg" alt="">
-							</div>
-							<div class="two-section__gallery-img-overly">
-								<div class="two-section__gallery-icon-bg">
-								</div>
-								<a class="img-popup" href="assets/images/gallery/two-section-gallery-img-3.jpg">
-									<span class="icon-right-arrow"></span>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-6 col-lg-3 col-md-6">
-						<!--Two Section Galley Single-->
-						<div class="two-section__gallery-single">
-							<div class="two-section__gallery-img-inner">
-								<img src="assets/images/gallery/two-section-gallery-img-4.jpg" alt="">
-							</div>
-							<div class="two-section__gallery-img-overly">
-								<div class="two-section__gallery-icon-bg">
-								</div>
-								<a class="img-popup" href="assets/images/gallery/two-section-gallery-img-4.jpg">
-									<span class="icon-right-arrow"></span>
-								</a>
-							</div>
-						</div>
-					</div>
+					<?php endforeach; ?>
 
 				</div>
 			</div>
@@ -289,7 +246,7 @@
 
 	<!--Quality Work Start-->
 	<section class="quality-work">
-		<div class="quality-work-shape" style="background-image: url(assets/images/shapes/quality-work--shape.png);"></div>
+		<div class="quality-work-shape"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-12">
@@ -307,39 +264,29 @@
 										<div class="col-xl-6 col-lg-6">
 											<div class="tab-content__inner-left">
 												<ul class="list-unstyled tab-content__inner-list">
+													<?php foreach ($latest_publications as $publication): ?>
 													<li>
 														<div class="tab-content__icon">
 															<span class="icon-tick"></span>
 														</div>
 														<div class="tab-content__desc">
-															<h4 class="tab-content__title">Get Inspire and Help</h4>
-															<p class="tab-content__text">Lorem Ipsum nibh vel velit
-																auctor aliqu. Aenean sollic tudin, lorem is simply
-																man made many people recover them free text quis
-																bibendum.</p>
+															<h4 class="tab-content__title"><?php echo $publication->title ?></h4>
+															<p class="tab-content__text">
+																<?php echo $publication->short_description ?>
+															</p>
 														</div>
 													</li>
-													<li>
-														<div class="tab-content__icon tab-content__icon-clr-seacondary">
-															<span class="icon-tick"></span>
-														</div>
-														<div class="tab-content__desc">
-															<h4 class="tab-content__title">Become a Volunteer</h4>
-															<p class="tab-content__text">Lorem Ipsum nibh vel velit
-																auctor aliqu. Aenean sollic tudin, lorem is simply
-																man made many people recover them free text quis
-																bibendum.</p>
-														</div>
-													</li>
+													<?php endforeach; ?>
+
 												</ul>
 											</div>
 										</div>
 										<div class="col-xl-6 col-lg-6">
 											<div class="tab-content__inner-right ">
 												<div class="tab-content__video-link">
-													<div class="tab-content-video-bg" style="background-image: url(assets/images/backgrounds/tab-content-video-bg.jpg);">
+													<div class="tab-content-video-bg" style="background-image: url(<?php echo $company_data->home_about_picture ?>);">
 													</div>
-													<a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
+													<a href="<?php echo $company_data->preview_video ?>" class="video-popup">
 														<div class="tab-content__video-icon">
 															<span class="fa fa-play"></span>
 															<i class="ripple"></i>
@@ -355,72 +302,25 @@
 							<div class="tab  animated fadeInUp" id="inspiration">
 								<div class="tab-content__inner">
 									<div class="row">
-										<div class="col-xl-6 col-lg-6">
-											<div class="tab-content__inner-left">
-												<h3 class="tab-content__title tab-content__title--big">Our Values
-												</h3>
-												<!-- /.tab-content__title -->
-												<p class="tab-content__summery">Lorem Ipsum nibh vel velit auctor
-													aliqu. Aenean sollic tudin,
-													lorem is simply man made many people recover we want to make
-													sure that people can get food, education, treatment and
-													accommodation.</p>
-												<div class="row">
-													<div class="col-sm-6 tab-content__image">
-														<img src="assets/images/resources/tab-info-1-1.jpg" alt="">
-													</div><!-- /.col-sm-6 -->
-													<div class="col-sm-6 tab-content__image">
-														<img src="assets/images/resources/tab-info-1-2.jpg" alt="">
-													</div><!-- /.col-sm-6 -->
-												</div><!-- /.row -->
-											</div>
-										</div>
-										<div class="col-xl-6 col-lg-6">
+										<div class="col-xl-12 col-lg-12">
 											<div class="tab-content__inner-right  ">
 												<div class="faq-page__single">
 													<div class="accrodion-grp faq-one-accrodion" data-grp-name="faq-one-accrodion-1">
+														<?php foreach ($latest_news as $news_article): ?>
 														<div class="accrodion">
 															<div class="accrodion-title">
-																<h4>Why is it important to support them</h4>
+																<h4><?php echo $news_article->title ?></h4>
 															</div>
 															<div class="accrodion-content">
 																<div class="inner">
-																	<p>There are many variations of passages the
-																		majority have suffered
-																		alteration in some fo injected humour, or
-																		randomised words believable.
+																	<p>
+																		<?php echo $news_article->short_description ?>
 																	</p>
 																</div><!-- /.inner -->
 															</div>
 														</div>
-														<div class="accrodion active">
-															<div class="accrodion-title">
-																<h4>Start a fundraiser for yourself</h4>
-															</div>
-															<div class="accrodion-content">
-																<div class="inner">
-																	<p>There are many variations of passages the
-																		majority have suffered
-																		alteration in some fo injected humour, or
-																		randomised words believable.
-																	</p>
-																</div><!-- /.inner -->
-															</div>
-														</div>
-														<div class="accrodion last-chiled">
-															<div class="accrodion-title">
-																<h4>Promoting the rights of the children</h4>
-															</div>
-															<div class="accrodion-content">
-																<div class="inner">
-																	<p>There are many variations of passages the
-																		majority have suffered
-																		alteration in some fo injected humour, or
-																		randomised words believable.
-																	</p>
-																</div><!-- /.inner -->
-															</div>
-														</div>
+														<?php endforeach; ?>
+
 													</div>
 												</div>
 											</div>
@@ -428,52 +328,40 @@
 									</div>
 								</div>
 							</div>
+
+
 							<!--tab-->
 							<div class="tab  animated fadeInUp" id="difference">
 								<div class="tab-content__inner">
 									<div class="row">
-										<div class="col-xl-7 col-lg-7">
-											<div class="tab-content__inner-left">
-												<div class="tab-content__difference">
-
-													<h3 class="tab-content__title tab-content__title--big">
-														Raise Fund for Clean & Healthy Food
-													</h3><!-- /.tab-content__title tab-content__title--big -->
-													<p class="tab-content__summery">
-														Lorem Ipsum nibh vel velit auctor aliqu. Aenean sollic
-														tudin,
-														lorem is simply man made many people recover we want to make
-														sure that people can get food, education, treatment and
-														accommodation for everyone who is living in poverty. them
-														free
-														text quis bibendum.
-													</p><!-- /.tab-content__summery -->
-													<div class="featured-campaigns__progress">
-														<div class="bar">
-															<div class="bar-inner count-bar" data-percent="76%">
-																<div class="count-text">76%</div>
+										<div class="col-xl-12 col-lg-12">
+											<div class="tab-content__inner-right  ">
+												<div class="faq-page__single">
+													<div class="accrodion-grp faq-one-accrodion" data-grp-name="faq-one-accrodion-1">
+														<?php foreach ($latest_downloads as $download): ?>
+															<div class="accrodion">
+																<div class="accrodion-title">
+																	<h4><?php echo $download->name ?></h4>
+																</div>
+																<div class="accrodion-content">
+																	<div class="inner">
+																		<p>
+                                                                         <a target="_blank" href="<?php echo $download->url ?>">Click to download</a>
+																		</p>
+																	</div><!-- /.inner -->
+																</div>
 															</div>
-														</div>
-														<div class="featured-campaigns__goals">
-															<p><span>$25,270</span> Raised</p>
-															<p><span>$30,000</span> Goal</p>
-														</div>
+														<?php endforeach; ?>
+
 													</div>
-													<a href="donate-now.html" class="donate-btn"> <i class="fa fa-heart"></i>
-														Donate Now</a>
-												</div><!-- /.tab-content__difference -->
-											</div>
-										</div>
-										<div class="col-xl-5 col-lg-5">
-											<div class="tab-content__inner-right ">
-												<div class="tab-content__image">
-													<img src="assets/images/resources/tab-featured-cause.jpg" alt="tab causes">
-												</div><!-- /.tab-content__image -->
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
+
 						</div>
 					</div>
 				</div>

@@ -21,9 +21,10 @@
 					<div class="footer-widget__column footer-widget__links clearfix">
 						<h3 class="footer-widget__title">Quick Links</h3>
 						<ul class="footer-widget__links-list list-unstyled clearfix">
-							<li><a href="<?php echo base_url() ?>about">Who we are</a></li>
-							<li><a href="<?php echo base_url() ?>news">News</a></li>
-							<li><a href="<?php echo base_url() ?>opportunities">Opportunities</a></li>
+							<li><a href="<?php echo base_url() ?>about">Who We Are</a></li>
+							<li><a href="<?php echo base_url() ?>program">What We Do</a></li>
+							<li><a href="<?php echo base_url() ?>news">Blog</a></li>
+							<li><a href="<?php echo base_url() ?>vacancies">Opportunities</a></li>
 							<li><a href="<?php echo base_url() ?>contact">Contact</a></li>
 						</ul>
 					</div>
@@ -114,7 +115,7 @@
 		<span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
 		<div class="logo-box">
-			<a href="<?php echo base_url() ?>" aria-label="logo image"><img src="<?php echo base_url() ?>assets/images/resources/<?php echo $company_data->logo ?>" alt=""></a>
+			<a href="<?php echo base_url() ?>" aria-label="logo image"><img style="object-fit: cover; height: 50px" src="<?php echo $company_data->logo ?>" alt=""></a>
 		</div>
 		<!-- /.logo-box -->
 		<div class="mobile-nav__container"></div>

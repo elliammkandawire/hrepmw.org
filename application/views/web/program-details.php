@@ -1,12 +1,14 @@
 <!--Page Header Start-->
 <section class="page-header">
-	<div class="page-header-bg" style="background-image: url(<?php echo base_url() ?>assets/images/backgrounds/page-header-bg.jpg)">
+	<div class="page-header-bg" style="background-image: url(<?php echo $program_details->image  ?>)">
 	</div>
 	<div class="container">
 		<div class="page-header__inner">
 			<h2>Program Details</h2>
 			<ul class="thm-breadcrumb list-unstyled">
 				<li><a href="<?php echo base_url() ?>">Home</a></li>
+				<li><span>/</span></li>
+				<li><a href="<?php echo base_url() ?>program">Programs</a></li>
 				<li><span>/</span></li>
 				<li class="active">Program Details</li>
 			</ul>
@@ -23,7 +25,7 @@
 				<div class="blog-details__left">
 					<div class="blog-details__content">
 						<ul class="list-unstyled blog-details__meta">
-							<li><a href="#"><i class="far fa-user-circle"></i> Admin</a></li>
+<!--							<li><a href="#"><i class="far fa-user-circle"></i> Admin</a></li>-->
 						</ul>
 						<h3 class="blog-details__title"><?php echo $program_details->title ?>
 						</h3>
@@ -47,7 +49,7 @@
 							<?php foreach ($latest_news as $latest): ?>
 								<li>
 									<div class="sidebar__post-image">
-										<img style="object-fit: cover; height: 60px;" src="<?php echo base_url()?>assets/images/blog/<?php echo $latest->picture ?>" alt="">
+										<img style="object-fit: cover; height: 60px;" src="<?php echo $latest->picture ?>" alt="">
 									</div>
 									<div class="sidebar__post-content">
 										<h3>

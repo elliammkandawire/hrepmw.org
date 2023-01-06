@@ -16,12 +16,17 @@ class BaseController extends CI_Controller {
 		if (!empty($this->data_model->getHeader($this->getPageName($page)))) {
 			$data["header"]=$this->data_model->getHeader($this->getPageName($page))[0];
 		}
-		$data["events"]=$this->data_model->readDataWithOrder("events","date","ASC");
+
+		$data[$additional_data["title"]]=$additional_data["data"];
 		$data["events_latest"]=$this->data_model->readTopRandomly("events",3);
 		$data["sliders"]=$this->data_model->readSliders("sliders");
 		$data["news"]=$this->data_model->paginated("news",0,20);
 		$data["latest_news"]=$this->data_model->readTopRandomly("news",4);
+		$data["random_vacancies"]=$this->data_model->readTopRandomly("vacancies",4);
 		$data["moh_announcements"]=$this->data_model->readTop("moh_announcements",2);
+		$data["latest_downloads"]=$this->data_model->readTop("downloads",4);
+		$data["latest_publications"]=$this->data_model->readTop("publications",2);
+		$data["features"]=$this->data_model->readTop("feature",4);
 		$data[$additional_data["title"]]=$additional_data["data"];
 
         
