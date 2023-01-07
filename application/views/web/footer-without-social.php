@@ -10,8 +10,8 @@
 				<div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
 					<div class="footer-widget__column footer-widget__about">
 						<div class="footer-widget__about-text-box">
-							<img style="object-fit: cover; height: 200px;" src="<?php echo $company_data->logo_big ?>" alt="">
-<!--							<p class="footer-widget__about-text">--><?php //echo $company_data->motto ?><!--</p>-->
+<!--							<img style="object-fit: cover; height: 200px;" src="--><?php //echo $company_data->logo_big ?><!--" alt="">-->
+							<p class="footer-widget__about-text"><?php echo $company_data->motto ?></p>
 						</div>
 						<a href="<?php echo $company_data->facebook ?>" class="donate-btn footer-donate__btn"> <i class="fab fa-facebook"></i>
 							Follow Us</a>

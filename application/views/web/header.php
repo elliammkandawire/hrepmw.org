@@ -139,7 +139,7 @@
                     <div class="main-menu-wrapper__right">
                         <div class="main-menu-wrapper__search-cat">
 <!--                            <a href="#" class="main-menu-wrapper__search search-toggler icon-magnifying-glass"></a>-->
-                            <a href="login.html" class="main-menu-wrapper__cart icon-avatar mini-cart__toggler"></a>
+                            <a href="<?php echo base_url() ?>login" class="main-menu-wrapper__cart icon-avatar mini-cart__toggler"></a>
                         </div>
                         <a href="donate-now.html" class="donate-btn main-menu-wrapper__btn"> <i class="fab fa-facebook"></i>
                             Follow</a>

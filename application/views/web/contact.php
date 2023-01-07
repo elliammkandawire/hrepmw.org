@@ -122,16 +122,16 @@
 			<div class="row">
 				<div class="col-xl-4 col-lg-4">
 					<!--Contact Info Single-->
-					<div class="contact-info__single">
-						<h4 class="contact-info__title">What we believe in</h4>
-						<p class="contact-info__text"><?php echo ucwords($company_data->motto)  ?></p>
+					<div class="contact-info__single contact-info__single-2">
+						<h4 class="contact-info__title">Address</h4>
+						<p class="contact-info__text"><?php echo $company_data->postal_address  ?></p>
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-4">
 					<!--Contact Info Single-->
-					<div class="contact-info__single contact-info__single-2">
-						<h4 class="contact-info__title">Address</h4>
-						<p class="contact-info__text"><?php echo $company_data->postal_address  ?></p>
+					<div class="contact-info__single">
+						<h4 class="contact-info__title">What we believe in</h4>
+						<p class="contact-info__text"><?php echo ucwords($company_data->motto)  ?><br><br></p>
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-4">
@@ -152,6 +152,7 @@
 
 	<!--Contact page Google Map Start-->
 	<section class="contact-page-google-map">
-		<?php echo $company_data->map_src ?>
+		<iframe src="<?php echo $company_data->map_src ?>"
+				width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	</section>
 	<!--Google Map End-->

@@ -58,3 +58,12 @@ $route['event-details/(:any)']='Events/event_details/$1';
 $route['programs/(:any)']='program/program_details/$1';
 $route['vacancies/(:any)']='vacancies/vacancy_details/$1';
 $route['announcement/(:any)']='announcements/announcements_details/$1';
+
+
+$route['login'] = 'user';
+$route['auth'] = 'user/login';
+$route['dashboard'] = 'home/dashboard';
+$route['logout'] = 'user/logout';
+
+$route['update_company'] = 'home/update_company';
+$route['update_slider'] = 'slider/update_slider';

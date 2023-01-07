@@ -40,10 +40,40 @@ class BaseController extends CI_Controller {
 		return $data[count($data)-1];
 	}
 
+	public function checkIfLoggedIn(){
+		if(!isset($_SESSION['logged_in'])){
+			redirect("login");
+		}
+	}
+
+	public function addDashboardHeaderAndFooterAndMenu($page, $additional_data){
+		$this->checkIfLoggedIn();
+		$data[$additional_data["title"]]=$additional_data["data"];
+		$data["company_data"]=($this->data_model->company_data()[0]);
+		$this->load->view('dashboard/dashboard_header',$data);
+		$this->load->view($page);
+		$this->load->view('dashboard/dashboard_footer');
+		if($page=="dashboard/update_company_details"){
+			$this->load->view('dashboard/special_footer');
+		}
+	}
+
+	public function check_if_logged_in(){
+		if($_SESSION['logged_in']){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	public function clean($string) {
 		$string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
 
 		return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+	}
+
+	public function createPictureUrl($location,$filename){
+		return base_url().$location.$filename;
 	}
 
 	public function no_of_pages($table, $size){
