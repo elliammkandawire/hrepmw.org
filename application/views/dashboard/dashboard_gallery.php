@@ -10,7 +10,7 @@
 				<strong>Feedback!</strong> <?php echo $message ?>
 			</div>
 			<?php $_SESSION['message']=null; } ?>
-		<header class="w3-container" style="background-color: #822676">
+		<header class="w3-container main-color">
 			<h5 style="color: whitesmoke">GALLERY</h5>
 			<button class="btn btn-success" data-toggle="modal" data-target="#add" onclick="add_summary_note()" data-whatever="@mdo"><i class="fa fa-plus"></i> Add</button>
 		</header>
@@ -18,12 +18,13 @@
 	<div id="container" style="width: 100%;">
 		<?php foreach($data as $item): ?>
 			<div class="gallery w3-container">
-				<a target="_blank" href="<?php echo base_url(); ?>assets\images\gallery\<?php echo $item->picture; ?>">
-					<img src="<?php echo base_url(); ?>assets\images\gallery\<?php echo $item->picture; ?>" alt="" style="object-fit: cover; height: 200px;" >
+				<a target="_blank" href="<?php echo $item->picture; ?>">
+					<img src="<?php echo $item->picture; ?>" alt="" style="object-fit: cover; height: 200px;" >
 				</a>
 				<div class="desc"><?php echo $item->name;  ?></div>
 				<div class="container">
 					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit" data-whatever="@mdo" onclick="edit_gallery('<?php echo $item->slug; ?>')"><i class="fa fa-edit"></i></button>
+					<button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->name; ?>','Confirm deleting gallery with title ','gallery/delete')"><i class="fa fa-trash"></i></button>
 				</div>
 			</div>
 		<?php endforeach; ?>
@@ -52,16 +53,12 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="<?php echo base_url() ?>gallery/add_gallery" enctype="multipart/form-data">
+					<?php echo form_open_multipart('gallery/addNew');?>
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Title</label>
 								<input  type="text" class="form-control" name="name">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Caption</label>
-								<input class="form-control"  name="caption">
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -80,7 +77,7 @@
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Save</button>
 			</div>
-			</form>
+			<?php echo form_close(); ?>
 		</div>
 	</div>
 </div>
@@ -100,7 +97,7 @@
 			</div>
 			<div class="modal-body">
 
-				<form method="POST" action="<?php echo base_url() ?>gallery/update_gallery" enctype="multipart/form-data">
+				<form method="POST" action="<?php echo base_url() ?>gallery/EditExisting" enctype="multipart/form-data">
 					<div class="row">
 						<div class="col-lg-6">
 							<input type="hidden" class="form-control" name="slug" id="slug" required="">
@@ -109,11 +106,6 @@
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">Name</label>
 								<input  type="text" class="form-control" name="name" id="name">
-							</div>
-
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Cation</label>
-								<input  type="text" class="form-control" name="caption" id="caption">
 							</div>
 
 						</div>

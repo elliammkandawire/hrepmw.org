@@ -43,18 +43,18 @@
 						</form>
 					</div>
 					<div class="sidebar__single sidebar__post">
-						<h3 class="sidebar__title">Latest Posts</h3>
+						<h3 class="sidebar__title">Our Programs</h3>
 						<ul class="sidebar__post-list list-unstyled">
 
-							<?php foreach ($latest_news as $latest): ?>
+							<?php foreach ($programs as $program): ?>
 								<li>
-									<div class="sidebar__post-image">
-										<img style="object-fit: cover; height: 60px;" src="<?php echo $latest->picture ?>" alt="">
-									</div>
+<!--									<div class="sidebar__post-image">-->
+<!--										<img style="object-fit: cover; height: 60px;" src="--><?php //echo $latest->picture ?><!--" alt="">-->
+<!--									</div>-->
 									<div class="sidebar__post-content">
 										<h3>
-											<span class="sidebar__post-content-meta"><i class="far fa-user-circle"></i> Admin</span>
-											<a href="<?php echo base_url()."news-details/".$latest->slug ?>"><?php echo $latest->title ?></a>
+<!--											<span class="sidebar__post-content-meta"><i class="far fa-user-circle"></i> Admin</span>-->
+											<a href="<?php echo base_url()."programs/".$program->slug ?>"><?php echo $program->title ?></a>
 										</h3>
 									</div>
 								</li>

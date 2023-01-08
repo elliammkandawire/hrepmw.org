@@ -150,7 +150,7 @@
 									<!--Two Section Galley Single-->
 									<div class="two-section__gallery-single">
 										<div class="two-section__gallery-img-inner">
-											<img src="<?php echo $announcement->picture ?>" alt="">
+											<img style="object-fit: cover; height: 500px;" src="<?php echo $announcement->picture ?>" alt="">
 										</div>
 										<div class="two-section__gallery-img-overly">
 											<div class="two-section__gallery-icon-bg">

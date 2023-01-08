@@ -67,3 +67,19 @@ $route['logout'] = 'user/logout';
 
 $route['update_company'] = 'home/update_company';
 $route['update_slider'] = 'slider/update_slider';
+
+
+$route['program_admin'] = 'program/admin_dashboard';
+$route['team_admin'] = 'team/admin_dashboard';
+$route['events_admin'] = 'events/admin_dashboard';
+$route['partners_admin'] = 'partners/admin_dashboard';
+
+$route['news_admin'] = 'news/news_admin';
+$route['downloads_admin'] = 'downloads/admin';
+$route['announcement_admin'] = 'announcements/admin';
+$route['gallery_admin'] = 'gallery/admin';
+$route['vacancies_admin'] = 'vacancies/admin';
+$route['vacancies_addNew'] = 'vacancies/addNew';
+$route['vacancies_EditExisting'] = 'vacancies/EditExisting';
+$route['vacancy_details/(:any)'] = 'vacancies/get_vacancy_details/$1';
+$route['vacancy_delete/(:any)'] = 'vacancies/delete/$1';

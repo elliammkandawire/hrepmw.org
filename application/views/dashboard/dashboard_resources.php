@@ -1,4 +1,4 @@
-<div class="col-lg-9"><!--start col-lg-4-->
+<div class="col-lg-10"><!--start col-lg-4-->
 	<div class="w3-card-16">
 
 		<?php if(isset($_SESSION['message'])){ $message=$_SESSION['message']; ?>
@@ -19,7 +19,7 @@
 				<nav aria-label="Page navigation">
 					<ul class="pagination">
 						<?php foreach($pagenation as $page_number): ?>
-							<li class="page-item <?php if($page==$page_number){ echo "active";} ?>"><a class="page-link active" href="<?php echo base_url() ?>admin_resources?page=<?php echo $page_number ?>"><?php echo $page_number ?></a></li>
+							<li class="page-item <?php if($page==$page_number){ echo "active";} ?>"><a class="page-link active" href="<?php echo base_url() ?>downloads_admin?page=<?php echo $page_number ?>"><?php echo $page_number ?></a></li>
 						<?php endforeach; ?>
 					</ul>
 				</nav>
@@ -42,18 +42,16 @@
 		<table class="w3-table w3-table-stripped table-bordered">
 			<thead>
 			<th>Name</th>
-			<th>Details</th>
-			<th>Link</th>
+			<th>Preview</th>
 			<th>Action</th>
 			</thead>
 			<tbody>
 			<?php foreach($data as $item): ?>
 				<td><?php echo $item->name;  ?></td>
-				<td><?php echo $item->details;  ?></td>
-				<td><?php echo $item->pdf_link;  ?></td>
+				<td><a target="_blank" href="<?php echo $item->url;  ?>"><?php echo $item->name;  ?></a></td>
 				<td>
 					<button style="margin-bottom: 5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit" data-whatever="@mdo" onclick="edit_resource('<?php echo $item->slug; ?>')"><i class="fa fa-edit"></i></button>
-					<button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->name; ?>','Confirm deleting resource with title ','publications/delete')"><i class="fa fa-trash"></i></button></td>
+					<button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->name; ?>','Confirm deleting resource with title ','downloads/delete')"><i class="fa fa-trash"></i></button></td>
 				</tr>
 			<?php endforeach; ?>
 			</tr>
@@ -84,8 +82,8 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<?php echo form_open_multipart('publications/addNew');?>
-				<div class="col-lg-6">
+				<?php echo form_open_multipart('downloads/addNew');?>
+				<div class="col-lg-12">
 					<input type="hidden" class="form-control" id="url"  value="<?php echo base_url(); ?>">
 
 					<div class="form-group">
@@ -94,24 +92,9 @@
 					</div>
 
 					<div class="form-group">
-						<label for="message-text" class="col-form-label">Pdf Link:</label>
-						<input type="text"  name="pdf_link" class="form-control" required>
+						<label for="message-text" class="col-form-label">File(PDF or Word):</label>
+						<input type="file" required class="form-control" name="file" accept=".doc, .docx, .pdf">
 					</div>
-
-					<div class="form-group">
-						<label for="message-text" class="col-form-label">Pdf Link:</label>
-						<textarea type="text" rows="15" name="details" class="form-control summernote" required></textarea>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="form-group">
-						<label for="message-text" class="col-form-label">Logo:</label>
-						<input type="file" required class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif"  onchange="readURL(this,'picture')">
-					</div>
-					<div>
-						<img src="#" alt="" style="width: 100%;" id="picture">
-					</div>
-					<br>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -138,39 +121,27 @@
 			</div>
 			<div class="modal-body">
 
-				<?php echo form_open_multipart('publications/EditExisting');?>
+				<?php echo form_open_multipart('downloads/EditExisting');?>
 				<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-12">
 						<input type="hidden" class="form-control" name="slug" id="slug" required="">
 						<input type="hidden" class="form-control" id="url"  value="<?php echo base_url(); ?>">
 
 						<div class="form-group">
 							<label for="recipient-name" class="col-form-label">Title:</label>
-							<input type="text" class="form-control" id="name" name="name"  required="">
+							<input type="text" class="form-control" name="name"  id="name" required="">
 						</div>
 
 						<div class="form-group">
-							<label for="message-text" class="col-form-label">Pdf Link:</label>
-							<input type="text" id="pdf_link" name="pdf_link" class="form-control" required>
+							<label for="message-text" class="col-form-label">Current URL:</label>
+							<input id="current_link" class="form-control" name="current_link" readonly>
 						</div>
 
 						<div class="form-group">
-							<label for="message-text" class="col-form-label">Pdf Link:</label>
-							<textarea type="text" id="details" rows="15" name="details" class="form-control summernote" required></textarea>
+							<label for="message-text" class="col-form-label">File(PDF or Word):</label>
+							<input type="file" class="form-control" name="file" accept=".doc, .docx, .pdf">
 						</div>
 
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">Logo:</label>
-							<input type="file" class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif"  onchange="readURL(this,'picture_edit')">
-							<input type="hidden" id="current_picture" name="current_picture">
-						</div>
-
-						<div>
-							<img src="#" alt="" style="width: 100%;" id="picture_edit">
-						</div>
-						<br>
 					</div>
 				</div>
 

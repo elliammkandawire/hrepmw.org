@@ -5,15 +5,18 @@ function edit_service(id){
   //show("loader")
   setValue("slug",id)
 	console.log()
-	let request=getValue("url")+"services/get_service_details"+"/"+id
+	let request=getValue("url")+"program/get_service_details"+"/"+id
 	connect(request,"",false,function(outcome){
-		//console.log(outcome)
+		console.log(outcome)
        let data=JSON.parse(outcome)
 		//console.log(data)
-       setValue("title",data.name)
-       setValue("content",data.description)
-       setValue("current_picture",data.picture)
-		get("picture_edit").src=getValue("url")+"assets/images/services/"+data.picture
+       setValue("title",data.title)
+       setValue("content",data.content)
+       setValue("short_description",data.short_description)
+       setValue("current_picture",data.image)
+		selectFromDropdown("delay",data.delay)
+		selectFromDropdown("icon",data.icon)
+		get("picture_edit").src=data.image
        //hide("loader")
     })
   $('.summernote').summernote();
@@ -189,18 +192,56 @@ function edit_event(id){
 		//console.log(outcome)
        let data=JSON.parse(outcome)
        setValue("current_picture",data.picture)
-       setValue("name",data.name)
-       setValue("details",data.details)
-       setValue("event_date",data.event_date)
-       setValue("event_time",data.event_time)
-       setValue("location",data.location)
-       get("picture_edit").src=getValue("url")+"assets/images/events/"+data.picture
+       setValue("title",data.title)
+       setValue("content",data.content)
+       setValue("date",data.date)
+       setValue("category",data.category)
+       get("picture_edit").src=data.picture
 
       //hide("loader")
     })
     $('.summernote').summernote();
 }
 
+function edit_announcement(id){
+	//show("loader")
+	setValue("slug",id)
+	let request=getValue("url")+"announcements/get_news_details"+"/"+id
+
+
+	connect(request,"",false,function(outcome){
+		let data=JSON.parse(outcome)
+		console.log(data)
+
+		setValue("title",data.title)
+		setValue("short_description",data.short_description)
+		setValue("content",data.content)
+		setValue("current_picture",data.picture)
+		get("picture_edit").src=data.picture
+
+		//hide("loader")
+	})
+	$('.summernote').summernote();
+}
+
+function edit_vacancy(id){
+	//show("loader")
+	setValue("slug",id)
+	let url=getValue("url")+"vacancy_details"
+	let request=url+"/"+id
+
+
+	//alert(request)
+	connect(request,"",false,function(outcome){
+		let data=JSON.parse(outcome)
+		console.log(data)
+
+		setValue("title",data.title)
+		setValue("content",data.content)
+		//hide("loader")
+	})
+	$('.summernote').summernote();
+}
 
 function edit_news(id){
   //show("loader")
@@ -214,10 +255,11 @@ function edit_news(id){
        let data=JSON.parse(outcome)
        console.log(data)
 
-       setValue("name",data.name)
-       setValue("details",data.details)
+       setValue("name",data.title)
+       setValue("details",data.content)
+       setValue("tags",data.tags)
        setValue("current_picture",data.picture)
-       get("picture_edit").src=getValue("url")+"assets/images/blog/"+data.picture
+       get("picture_edit").src=data.picture
 
       //hide("loader")
     })
@@ -235,17 +277,19 @@ function selectFromDropdown(id, value){
 }
 function edit_member(id){
   setValue("slug",id)
-	let url=getValue("url")+"members/get_member_details"
+	let url=getValue("url")+"partners/get_member_details"
 	let request=url+"/"+id
 	
 	//alert(request)
 	connect(request,"",false,function(outcome){
-		  //alert(outcome)
+		console.log(outcome)
        let data=JSON.parse(outcome)
        setValue("name",data.name)
        setValue("website",data.website)
+       setValue("content",data.content)
        setValue("current_picture",data.picture)
-       get("picture_edit").src=getValue("url")+"assets/images/members/"+data.picture
+       setValue("tag",data.tag)
+       get("picture_edit").src=data.picture
     })
     $('.summernote').summernote();
 }
@@ -290,11 +334,11 @@ function edit_team(id){
 
        setValue("name",data.name)
        setValue("edit_position",data.position)
-       setValue("twitter_link",data.twitter_url)
-       setValue("facebook_link",data.facebook_url)
+       setValue("twitter_link",data.twitter)
+       setValue("facebook_link",data.facebook)
+       setValue("display_position",data.display_position)
        setValue("current_picture",data.picture)
-       setValue("teams_group",data.teams_group)
-       get("picture_edit").src=getValue("url")+"assets/images/team/"+data.picture
+       get("picture_edit").src=data.picture
 
       //hide("loader")
     })
@@ -317,11 +361,57 @@ function edit_gallery(id){
        //alert(data)
 
        setValue("name",data.name)
-       setValue("caption",data.caption)
        setValue("current_picture",data.picture)
-       get("picture_edit").src=getValue("url")+"assets/images/gallery/"+data.picture
+       get("picture_edit").src=data.picture
     })
     $('.summernote').summernote();
+}
+
+function edit_header(id){
+	setValue("slug",id)
+	connect(getValue("url")+"headers/get_header_details"+"/"+id,"",false,function(outcome){
+		//alert(outcome)
+		let data=JSON.parse(outcome)
+		//alert(data)
+
+		setValue("menu_name",data.menu_name)
+		setValue("current_picture",data.image_url)
+		get("picture_edit").src=data.image_url
+	})
+	$('.summernote').summernote();
+}
+
+function edit_moh(id){
+	setValue("slug",id)
+	let url=getValue("url")+"ministryAnnouncements/get_ministryAnnouncements_details"
+	let request=url+"/"+id
+
+	//alert(request)
+	connect(request,"",false,function(outcome){
+		//alert(outcome)
+		let data=JSON.parse(outcome)
+		console.log(data)
+
+		setValue("title",data.title)
+		setValue("current_picture",data.picture)
+		get("picture_edit").src=data.picture
+	})
+	$('.summernote').summernote();
+}
+
+function edit_feature(id){
+	setValue("slug",id)
+	//alert(request)
+	connect(getValue("url")+"features/get_features_details"+"/"+id,"",false,function(outcome){
+		//alert(outcome)
+		let data=JSON.parse(outcome)
+		console.log(data)
+
+		setValue("title",data.title)
+		setValue("current_picture",data.newspaper_screenshot)
+		get("picture_edit").src=data.newspaper_screenshot
+	})
+	$('.summernote').summernote();
 }
 function edit_publication(id){
   show("loader")
@@ -349,16 +439,13 @@ function edit_publication(id){
 }
 function edit_resource(id){
     setValue("slug",id)
-	let url=getValue("url")+"publications/get_resources_details"
+	let url=getValue("url")+"downloads/get_resources_details"
 	let request=url+"/"+id
 
 	connect(request,"",false,function(outcome){
        let data=JSON.parse(outcome)
        setValue("name",data.name)
-       setValue("pdf_link",data.pdf_link)
-       setValue("details",data.details)
-       setValue("current_picture",data.picture)
-       get("picture_edit").src=getValue("url")+"assets/images/publications/"+data.picture
+       setValue("current_link",data.url)
     })
     $('.summernote').summernote();
 }
@@ -413,6 +500,10 @@ function edit_company_policy(id){
 
 function reflesh(){
    window.location=location
+}
+
+function refresh(){
+	window.location=location
 }
 
 function edit_activism(id){

@@ -53,13 +53,13 @@ class Home extends BaseController {
 		/*check if about picture is empty*/
 		if ($_FILES['about_picture']['error']!=4) {
 			$file_name=$this->do_upload("./assets/images/backgrounds","about_picture")['upload_data']['file_name'];
-			$data['about_picture']=base_url()."assets/images/resources/".$file_name;
+			$data['about_picture']=base_url()."assets/images/backgrounds/".$file_name;
 		}
 
 		/*check if home about picture is empty*/
 		if ($_FILES['home_about_picture']['error']!=4) {
 			$file_name=$this->do_upload("./assets/images/backgrounds","home_about_picture")['upload_data']['file_name'];
-			$data['home_about_picture']=base_url()."assets/images/resources/".$file_name;
+			$data['home_about_picture']=base_url()."assets/images/backgrounds/".$file_name;
 		}
 
 

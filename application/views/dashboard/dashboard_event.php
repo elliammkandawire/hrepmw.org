@@ -1,4 +1,4 @@
-<div class="col-lg-9"><!--start col-lg-4-->
+<div class="col-lg-10"><!--start col-lg-4-->
 	<div class="w3-card-16">
 
 		<?php if(isset($_SESSION['message'])){ $message=$_SESSION['message']; ?>
@@ -43,20 +43,18 @@
 		<table class="w3-table w3-table-stripped table-bordered">
 			<thead>
 			<th>Title</th>
-			<th>Short description</th>
+			<th>Description</th>
 			<th>Date</th>
-			<th>Time</th>
 			<th>Action</th>
 			</thead>
 			<tbody>
 			<?php foreach($data as $item): ?>
-				<td><?php echo $item->name;  ?></td>
-				<td><?php echo $item->details;  ?></td>
-				<td><?php echo $item->event_date;  ?></td>
-				<td><?php echo $item->event_time;  ?></td>
+				<td><?php echo $item->title;  ?></td>
+				<td><?php echo substr($item->content,0,200);  ?></td>
+				<td><?php echo $item->date;  ?></td>
 				<td>
 					<button style="margin-bottom: 5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit" data-whatever="@mdo" onclick="edit_event('<?php echo $item->slug; ?>')"><i class="fa fa-edit"></i></button>
-					<button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->name; ?>','Confirm deleting event with title ','events/delete')"><i class="fa fa-trash"></i></button></td>
+					<button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->title; ?>','Confirm deleting event with title ','events/delete')"><i class="fa fa-trash"></i></button></td>
 				</tr>
 			<?php endforeach; ?>
 			</tr>
@@ -93,28 +91,24 @@
 
 					<div class="form-group">
 						<label for="recipient-name" class="col-form-label">Title:</label>
-						<input type="text" class="form-control" name="name"  required="">
+						<input type="text" class="form-control" name="title"  required="">
 					</div>
 					<div class="form-group">
 						<label for="message-text" class="col-form-label">Content:</label>
-						<textarea class="form-control summernote"  rows="15" name="details" style="white-space: pre-wrap;"></textarea>
+						<textarea class="form-control summernote"  rows="15" name="content" style="white-space: pre-wrap;"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label for="message-text" class="col-form-label">Event Date:</label>
-						<input type="date"  name="event_date" class="form-control" required>
+						<input type="date"  name="date" class="form-control" required>
 					</div>
 
 					<div class="form-group">
-						<label for="message-text" class="col-form-label">Event Time:</label>
-						<input type="time" name="event_time" class="form-control" required>
+						<label for="message-text" class="col-form-label">Category:</label>
+						<input type="text" name="category" class="form-control" required>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="form-group">
-						<label for="message-text" class="col-form-label">Location:</label>
-						<input type="text" name="location" class="form-control" required>
-					</div>
 					<div class="form-group">
 						<label for="message-text" class="col-form-label">News Picture:</label>
 						<input type="file" required class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif"  onchange="readURL(this,'picture')">
@@ -139,7 +133,7 @@
 <?php $uri = $_SERVER['REQUEST_URI']; ?>
 
 
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -158,28 +152,24 @@
 
 						<div class="form-group">
 							<label for="recipient-name" class="col-form-label">Title:</label>
-							<input type="text" class="form-control" id="name" name="name"  required="">
+							<input type="text" class="form-control" id="title" name="title"  required="">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">Content:</label>
-							<textarea class="form-control summernote"  id="details" rows="15" name="details" style="white-space: pre-wrap;"></textarea>
+							<textarea class="form-control summernote"  id="content" rows="15" name="content" style="white-space: pre-wrap;"></textarea>
 						</div>
 
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">Event Date:</label>
-							<input type="date" id="event_date" name="event_date" class="form-control" required>
+							<input type="date" id="date" name="date" class="form-control" required>
 						</div>
 
 						<div class="form-group">
-							<label for="message-text" class="col-form-label">Event Time:</label>
-							<input type="time" id="event_time" name="event_time" class="form-control" required>
+							<label for="message-text" class="col-form-label">Category:</label>
+							<input type="text" id="category" name="category" class="form-control" required>
 						</div>
 					</div>
 					<div class="col-lg-6">
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">Location:</label>
-							<input type="text" id="location" name="location" class="form-control" required>
-						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">News Picture:</label>
 							<input type="file" class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif"  onchange="readURL(this,'picture_edit')">
@@ -195,7 +185,7 @@
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" onclick="reflesh()" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Edit</button>
 			</div>
 			<?php echo form_close(); ?>

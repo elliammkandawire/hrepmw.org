@@ -1,6 +1,6 @@
 
 
-<div class="col-lg-9"><!--start col-lg-4-->
+<div class="col-lg-10"><!--start col-lg-4-->
     <div class="w3-card-16">
 
         <?php if(isset($_SESSION['message'])){ $message=$_SESSION['message']; ?>
@@ -42,8 +42,8 @@
 			<?php foreach($data as $item): ?>
 				<td><?php echo $item->name;  ?></td>
 				<td><?php echo $item->position;  ?></td>
-				<td><?php echo $item->facebook_url;  ?></td>
-				<td><?php echo $item->twitter_url;  ?></td>
+				<td><?php echo $item->facebook;  ?></td>
+				<td><?php echo $item->twitter;  ?></td>
 				<td>
 					<button style="margin-bottom: 5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit" data-whatever="@mdo" onclick="edit_team('<?php echo $item->slug; ?>')"><i class="fa fa-edit"></i></button>
 					<button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->name; ?>','Confirm deleting team with title ','team/delete')"><i class="fa fa-trash"></i></button></td>
@@ -68,7 +68,7 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> -->
 
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="width: 60%">
+    <div class="modal-dialog" role="document" style="width: 40%">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add News</h5>
@@ -85,7 +85,7 @@
                                 <input type="text" class="form-control" name="name"  required="">
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="col-form-label">Position</label>
+                                <label for="message-text" class="col-form-label">Office Position</label>
                                 <input  type="text" class="form-control" name="position">
                             </div>
                             <div class="form-group">
@@ -97,16 +97,12 @@
                                 <label for="message-text" class="col-form-label">Facebook Link</label>
                                 <input  type="text" class="form-control" value="#" name="facebook_link">
                             </div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">Category</label>
-								<select class="form-control" name="teams_group">
-									<option value="management_group">Management Group</option>
-									<option value="other_group">Technical Group</option>
-									<option value="technical_group">Others</option>
-								</select>
-							</div>
                         </div>
                         <div class="col-lg-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Display Position</label>
+								<input  type="number" class="form-control" name="display_position">
+							</div>
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">News Artwork:</label>
                                 <input type="file" class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif" required="" onchange="readURL(this,'picture')">
@@ -133,7 +129,7 @@
 
 
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="width: 50%;">
+    <div class="modal-dialog" role="document" style="width: 40%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
@@ -170,6 +166,10 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">Display Position</label>
+								<input  type="number" class="form-control" id="display_position" name="display_position">
+							</div>
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">News Picture:</label>
                                 <input type="file" class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif"  onchange="readURL(this,'picture_edit')">

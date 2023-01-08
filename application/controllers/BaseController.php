@@ -124,7 +124,7 @@ class BaseController extends CI_Controller {
 	public function do_upload($location,$file)
 	{
 		$config['upload_path']          = $location;
-		$config['allowed_types']        = 'pdf|gif|jpg|png|jpeg|mp3|mpeg';
+		$config['allowed_types']        = 'pdf|gif|jpg|png|jpeg|mp3|mpeg|doc|docx';
 		// $config['max_size']             = 1000;
 		// $config['max_width']            = 1600;
 		// $config['max_height']           = 768;

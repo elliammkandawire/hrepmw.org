@@ -69,10 +69,15 @@
 							<a href="<?php echo base_url() ?>events_admin" class="list-group-item"><i class="fa fa-clock-o"></i> Events</a>
 							<a href="<?php echo base_url() ?>news/news_admin" class="list-group-item"><i class="fa fa-book"></i> News</a>
                             <a href="<?php echo base_url() ?>team_admin"  class="list-group-item"><i class="fa fa-users"></i> Team</a>
-							<a href="<?php echo base_url() ?>services_admin" class="list-group-item"><i class="fa fa-balance-scale"></i> Programs</a>
-                            <a href="<?php echo base_url() ?>members_admin" class="list-group-item"><i class="fa fa-users"></i> Members</a>
-                            <a href="<?php echo base_url() ?>gallery" class="list-group-item"><i class="fa fa-camera"></i> Gallery</a>
-							<a href="<?php  echo base_url() ?>admin_resources" class="list-group-item"><i class="fa fa-book"></i> Resources</a>
+							<a href="<?php echo base_url() ?>program_admin" class="list-group-item"><i class="fa fa-balance-scale"></i> Programs</a>
+                            <a href="<?php echo base_url() ?>partners_admin" class="list-group-item"><i class="fa fa-users"></i> Partners</a>
+                            <a href="<?php echo base_url() ?>gallery_admin" class="list-group-item"><i class="fa fa-camera"></i> Gallery</a>
+							<a href="<?php  echo base_url() ?>announcement_admin" class="list-group-item"><i class="fa fa-bullhorn"></i> Announcements</a>
+							<a href="<?php  echo base_url() ?>vacancies_admin" class="list-group-item"><i class="fa fa-graduation-cap"></i> Vacancies</a>
+							<a href="<?php  echo base_url() ?>ministryAnnouncements" class="list-group-item"><i class="fa fa-bullhorn"></i> MOH Announcements</a>
+							<a href="<?php echo base_url() ?>features" class="list-group-item"><i class="fa fa-book"></i> Features</a>
+							<a href="<?php echo base_url() ?>downloads_admin" class="list-group-item"><i class="fa fa-download"></i> Downloads</a>
+							<a href="<?php echo base_url() ?>headers" class="list-group-item"><i class="fa fa-camera"></i> Headers</a>
 							<a href="<?php echo base_url(); ?>" target="_blank" class="list-group-item"><i class="fa fa-globe"></i> Website</a>
 							<a href="<?php echo base_url(); ?>logout"  class="list-group-item"><i class="fa fa-sign-out"></i> Logout</a>
 							

@@ -1,4 +1,4 @@
-<div class="col-lg-9"><!--start col-lg-4-->
+<div class="col-lg-10"><!--start col-lg-4-->
 	<div class="w3-card-16">
 
 		<?php if(isset($_SESSION['message'])){ $message=$_SESSION['message']; ?>
@@ -41,17 +41,19 @@
 
 		<table class="w3-table w3-table-stripped table-bordered">
 			<thead>
-			<th>Member</th>
-			<th>Website</th>
+			<th>Title</th>
+			<th>Content</th>
+			<th>Tags</th>
 			<th>Action</th>
 			</thead>
 			<tbody>
 			<?php foreach($data as $item): ?>
-				<td><?php echo $item->name;  ?></td>
-				<td><?php echo $item->details;  ?></td>
+				<td><?php echo $item->title;  ?></td>
+				<td><?php echo substr($item->content,0,200);  ?>...</td>
+				<td><?php echo $item->tags;  ?></td>
 				<td>
 					<button style="margin-bottom: 5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit" data-whatever="@mdo" onclick="edit_news('<?php echo $item->slug; ?>')"><i class="fa fa-edit"></i></button>
-					<button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->name; ?>','Confirm deleting news with title ','news/delete')"><i class="fa fa-trash"></i></button></td>
+					<button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->title; ?>','Confirm deleting news with title ','news/delete')"><i class="fa fa-trash"></i></button></td>
 				</tr>
 			<?php endforeach; ?>
 			</tr>
@@ -90,6 +92,11 @@
 						<label for="recipient-name" class="col-form-label">Title:</label>
 						<input type="text" class="form-control" name="name"  required="">
 					</div>
+
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">Tags(Separated by comma):</label>
+						<input type="text" class="form-control" name="tags"  required="">
+					</div>
 					<div class="form-group">
 						<label for="message-text" class="col-form-label">Content:</label>
 						<textarea class="form-control summernote" rows="15" name="details" style="white-space: pre-wrap;"></textarea>
@@ -97,11 +104,11 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label for="message-text" class="col-form-label">Logo:</label>
+						<label for="message-text" class="col-form-label">Picture:</label>
 						<input type="file" required class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif"  onchange="readURL(this,'picture')">
 					</div>
 					<div>
-						<img src="#" alt="" style="width: 100%;" id="picture">
+						<img src="#" alt="" style="object-fit: cover; height: 200px" id="picture">
 					</div>
 					<br>
 				</div>
@@ -119,7 +126,7 @@
 <?php $uri = $_SERVER['REQUEST_URI']; ?>
 
 
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -140,6 +147,10 @@
 							<label for="recipient-name" class="col-form-label">Title:</label>
 							<input type="text" class="form-control" id="name" name="name"  required="">
 						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Tags:</label>
+							<input type="text" class="form-control" name="tags" id="tags"  required="">
+						</div>
 
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">Content:</label>
@@ -155,7 +166,7 @@
 						</div>
 
 						<div>
-							<img src="#" alt="" style="width: 100%;" id="picture_edit">
+							<img src="#" alt="" style="object-fit: cover; height: 200px" id="picture_edit">
 						</div>
 						<br>
 					</div>
@@ -163,7 +174,7 @@
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" onclick="reflesh()" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary">Edit</button>
 			</div>
 			<?php echo form_close(); ?>

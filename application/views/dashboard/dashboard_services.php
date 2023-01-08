@@ -1,4 +1,4 @@
-<div class="col-lg-9"><!--start col-lg-4-->
+<div class="col-lg-10"><!--start col-lg-4-->
     <div class="w3-card-16">
 
         <?php if(isset($_SESSION['message'])){ $message=$_SESSION['message']; ?>
@@ -19,7 +19,7 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <?php foreach($pagenation as $page_number): ?>
-                            <li class="page-item <?php if($page==$page_number){ echo "active";} ?>"><a class="page-link active" href="<?php echo base_url() ?>services_admin?page=<?php echo $page_number ?>"><?php echo $page_number ?></a></li>
+                            <li class="page-item <?php if($page==$page_number){ echo "active";} ?>"><a class="page-link active" href="<?php echo base_url() ?>program_admin?page=<?php echo $page_number ?>"><?php echo $page_number ?></a></li>
 
                         <?php endforeach; ?>
                     </ul>
@@ -44,15 +44,17 @@
             <thead>
             <th>Title</th>
             <th>Short description</th>
+            <th>Icon</th>
             <th>Action</th>
             </thead>
             <tbody>
             <?php foreach($data as $item): ?>
-                <td><?php echo $item->name;  ?></td>
-                <td><?php echo $item->description;  ?></td>
+                <td><?php echo $item->title;  ?></td>
+                <td><?php echo $item->short_description;  ?></td>
+                <td><?php echo $item->icon;  ?></td>
                 <td>
                     <button style="margin-bottom: 5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit" data-whatever="@mdo" onclick="edit_service('<?php echo $item->slug; ?>')"><i class="fa fa-edit"></i></button>
-                    <button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->name; ?>','Confirm deleting service with title ','services/delete')"><i class="fa fa-trash"></i></button></td>
+                    <button class="btn btn-warning btn-sm" onclick="delete_('<?php echo $item->slug; ?>','<?php echo $item->title; ?>','Confirm deleting project with title ','program/delete')"><i class="fa fa-trash"></i></button></td>
                 </tr>
             <?php endforeach; ?>
             </tr>
@@ -83,13 +85,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?php echo form_open_multipart('services/addService');?>
+                <?php echo form_open_multipart('program/addService');?>
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Title:</label>
-                            <input type="text" class="form-control" name="name"  required="">
-                        </div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Title:</label>
+							<input type="text" class="form-control"  name="name"  required="">
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Short Description:</label>
+							<textarea class="form-control summernote"  rows="15" name="short_description" style="white-space: pre-wrap;"></textarea>
+						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">Content:</label>
 							<textarea class="form-control summernote"  rows="15" name="content" style="white-space: pre-wrap;"></textarea>
@@ -97,7 +104,26 @@
                     </div>
                     <div class="col-lg-6">
 						<div class="form-group">
-							<label for="message-text" class="col-form-label">News Artwork:</label>
+							<label for="message-text" class="col-form-label">Delay:</label>
+							<select name="delay" class="form-control">
+								<option>100ms</option>
+								<option>200ms</option>
+								<option>300ms</option>
+								<option>400ms</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Icon:</label>
+							<select  name="icon" class="form-control">
+								<option>icon-peace</option>
+								<option>icon-heart</option>
+								<option>icon-peace-1</option>
+								<option>icon-praying</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Picture:</label>
 							<input type="file" class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif" required="" onchange="readURL(this,'picture')">
 						</div>
 
@@ -121,7 +147,7 @@
 <?php $uri = $_SERVER['REQUEST_URI']; ?>
 
 
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -132,7 +158,7 @@
             </div>
             <div class="modal-body">
 
-                <?php echo form_open_multipart('services/updateService');?>
+                <?php echo form_open_multipart('program/updateService');?>
                 <div class="row">
                     <div class="col-lg-6">
                         <input type="hidden" class="form-control" name="slug" id="slug" required="">
@@ -142,14 +168,39 @@
                             <label for="recipient-name" class="col-form-label">Title:</label>
                             <input type="text" class="form-control" id="title" name="name"  required="">
                         </div>
+
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Short Description:</label>
+							<textarea class="form-control summernote"  id="short_description" rows="15" name="short_description" style="white-space: pre-wrap;"></textarea>
+						</div>
 						<div class="form-group">
 							<label for="message-text" class="col-form-label">Content:</label>
 							<textarea class="form-control summernote"  id="content" rows="15" name="content" style="white-space: pre-wrap;"></textarea>
 						</div>
+
                     </div>
                     <div class="col-lg-6">
 						<div class="form-group">
-							<label for="message-text" class="col-form-label">News Picture:</label>
+							<label for="message-text" class="col-form-label">Delay:</label>
+							<select id="delay" name="delay" class="form-control">
+								<option>100ms</option>
+								<option>200ms</option>
+								<option>300ms</option>
+								<option>400ms</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Icon:</label>
+							<select id="icon" name="icon" class="form-control">
+								<option>icon-peace</option>
+								<option>icon-heart</option>
+								<option>icon-peace-1</option>
+								<option>icon-praying</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">Picture:</label>
 							<input type="file" class="form-control" name="picture" accept=".jpg, .png, .jpeg, .gif"  onchange="readURL(this,'picture_edit')">
 							<input type="hidden" id="current_picture" name="current_picture">
 						</div>
@@ -163,7 +214,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reflesh()">Close</button>
                 <button type="submit" class="btn btn-primary">Edit</button>
             </div>
             <?php echo form_close(); ?>

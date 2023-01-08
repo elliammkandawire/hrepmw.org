@@ -1,6 +1,6 @@
 
 
-<div class="col-lg-9"><!--start col-lg-4-->
+<div class="col-lg-10"><!--start col-lg-4-->
     <div class="w3-card-16">
 
         <?php if(isset($_SESSION['message'])){ $message=$_SESSION['message']; ?>

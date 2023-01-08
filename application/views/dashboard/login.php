@@ -29,6 +29,15 @@
 									<button type="submit" class="thm-btn comment-form__btn">Login now</button>
 								</div>
 							</div>
+
+							<div class="col-xl-12">
+								<?php
+								if($this->session->flashdata('error')){ ?>
+									<div class="alert alert-danger text-center" style="margin-top:20px;">
+										<?php echo $this->session->flashdata('error'); ?>
+									</div>
+								<?php }  ?>
+							</div>
 						</div>
 					</form>
 				</div>
