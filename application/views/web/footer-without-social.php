@@ -34,7 +34,7 @@
 						<h3 class="footer-widget__title">Our Programs</h3>
 						<ul class="footer-widget__non-profit-list list-unstyled clearfix">
 							<?php foreach($programs as $program): ?>
-								<li><a href="<?php echo base_url()."programs"."/".$program->slug ?>"><?php echo $program->title ?></a></li>
+								<li><a href="<?php echo base_url()."programs"."/".$program->slug ?>"><?php echo ucwords($program->title) ?></a></li>
 							<?php endforeach; ?>
 						</ul>
 					</div>
